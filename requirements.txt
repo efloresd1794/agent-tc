@@ -1,0 +1,36 @@
+# Web framework
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+
+# LangChain / LangGraph
+langchain==0.3.12
+langchain-core==0.3.25
+langchain-community==0.3.12
+langchain-aws==0.2.9
+langchain-text-splitters==0.3.3
+langgraph==0.2.60
+
+# Vector store
+faiss-cpu==1.12.0
+
+# PDF loading
+pypdf==5.1.0
+
+# Stock data
+yfinance==0.2.50
+
+# AWS
+boto3==1.35.80
+botocore==1.35.80
+
+# Auth
+python-jose[cryptography]==3.3.0
+requests==2.32.3
+
+# Observability
+langfuse==2.60.0
+
+# Config
+pydantic==2.10.3
+pydantic-settings==2.6.1
+python-dotenv==1.0.1

@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+source/
+data/
+
+# Env
+.env
+*.env
+
+# Terraform
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup
+terraform/*.tfvars
+
+# Jupyter
+notebooks/.ipynb_checkpoints/
+
+# FAISS index (generated at runtime)
+*.faiss
+*.pkl
+
+# macOS
+.DS_Store
