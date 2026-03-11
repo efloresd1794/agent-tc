@@ -83,18 +83,39 @@ def _av_get(params: dict) -> dict | None:
     if not api_key:
         logger.info("Alpha Vantage API key not configured — skipping")
         return None
+
     try:
-        resp = _get_session().get(_AV_BASE, params={**params, "apikey": api_key}, timeout=15)
-        data = resp.json()
+        resp = _get_session().get(
+            _AV_BASE,
+            params={**params, "apikey": api_key},
+            timeout=15
+        )
+
+        if resp.status_code != 200:
+            logger.warning(f"Alpha Vantage HTTP error: {resp.status_code}")
+            return None
+
+        if not resp.text.strip():
+            logger.warning("Alpha Vantage returned empty response body")
+            return None
+
+        try:
+            data = resp.json()
+        except ValueError:
+            logger.warning(f"Alpha Vantage returned non-JSON response: {resp.text[:200]}")
+            return None
+
         if "Information" in data:
-            # Rate-limit or premium-only message from Alpha Vantage
             logger.warning(f"Alpha Vantage info: {data['Information']}")
             return None
+
         if "Error Message" in data:
             logger.warning(f"Alpha Vantage error: {data['Error Message']}")
             return None
+
         return data
-    except Exception as e:
+
+    except requests.RequestException as e:
         logger.warning(f"Alpha Vantage request failed: {e}")
         return None
 

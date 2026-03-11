@@ -1,5 +1,6 @@
 terraform/
 notebooks/
+data/
 .venv/
 .env
 __pycache__/
